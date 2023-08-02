@@ -1,15 +1,12 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <div>
-        <h1>방찾기</h1>
-        <h4 :style="titleStyle">A 원룸</h4>
-        <!-- HTML 속성은 : 붙여서 -->
-        <p>{{ price1 }}만원</p>
-        <!-- 데이터바인딩 시 {{ 가져올 자료이름 }} -->
+    <div class="menu">
+        <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
-    <div>
-        <h4>{{ products[1] }}</h4>
-        <p>{{ price2 }}만원</p>
+    <h1>방찾기</h1>
+    <div v-for="(a, i) in products" :key="i">
+        <!-- <태그 v-for="a" in 몇회" :key="a">{{a}}</태그> -->
+        <h4 :style="titleStyle">{{ a }}</h4>
+        <p>{{ price[i] }}만원</p>
     </div>
 </template>
 
@@ -18,10 +15,10 @@ export default {
     name: 'App',
     data() {
         return {
-            price1: 30,
-            price2: 60,
+            menu: ['Home', 'Products', 'About'],
+            price: [30, 60, 40],
             products: ['A 원룸', 'B 원룸', 'C 원룸'],
-            titleStyle: 'color : blue', // HTML 속성도 데이터바인딩 가능
+            // titleStyle: 'color : blue', // HTML 속성도 데이터바인딩 가능
         };
     },
     components: {},
@@ -35,6 +32,14 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+}
+.menu {
+    background: darkslateblue;
+    padding: 15px;
+    border-radius: 5px;
+}
+.menu a {
+    color: white;
+    padding: 10px;
 }
 </style>
