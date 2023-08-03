@@ -1,32 +1,44 @@
 <template>
     <div class="black-bg" v-if="isModal">
         <div class="white-bg">
-            <h4>상세페이지</h4>
-            <p>상세페이지 내용</p>
+            <img :src="data[clickId].image" style="width: 100%" />
+            <h4>{{ data[clickId].title }}</h4>
+            <p>{{ data[clickId].content }}</p>
+            <p>{{ data[clickId].price }}원</p>
             <button @click="isModal = false">닫기</button>
         </div>
     </div>
-
     <div class="menu">
         <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
     <h1>방찾기</h1>
-    <div v-for="(a, i) in products" :key="i">
+    <div v-for="(a, i) in data" :key="i">
         <!-- <태그 v-for="a" in 몇회" :key="a">{{a}}</태그> -->
         <!-- <img src="./assets/room0.jpg" alt="" class="room-img" /> -->
-        <img :src="require(`./assets/room${i}.jpg`)" alt="" class="room-img" />
-        <h4 @click="isModal = true" :style="titleStyle">{{ a }}</h4>
-        <p>{{ price[i] }}만원</p>
+        <!-- <img :src="require(`./assets/room${i}.jpg`)" alt="" class="room-img" /> -->
+        <img :src="a.image" alt="" class="room-img" />
+        <h4
+            @click="
+                isModal = true;
+                clickId = a.id;
+            "
+            :style="titleStyle"
+        >
+            {{ data[i].title }}
+        </h4>
+        <p>{{ a.price }}원</p>
         <!--  v-on 축약: @ -->
         <!-- <button v-on:click="report++">허위매물신고</button> -->
-        <button @click="report[i]++">허위매물신고</button>
+        <!-- <button @click="report[i]++">허위매물신고</button> -->
         <!-- 클릭 이벤트에 함수 적용 -->
         <!-- <button @click="increase()">허위매물신고</button>  -->
-        <span>신고수 : {{ report[i] }}</span>
+        <!-- <span>신고수 : {{ report[i] }}</span> -->
     </div>
 </template>
 
 <script>
+import data from './assets/data';
+
 export default {
     name: 'App',
     data() {
@@ -36,6 +48,8 @@ export default {
             products: ['A 원룸', 'B 원룸', 'C 원룸'],
             report: [0, 0, 0],
             isModal: false,
+            data: data,
+            clickId: 0,
             // report: 0,
             // titleStyle: 'color : blue', // HTML 속성도 데이터바인딩 가능
         };
