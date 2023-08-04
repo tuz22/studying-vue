@@ -1,12 +1,17 @@
 <template>
     <div class="discount">
-        <h4>지금 결제시 20% 할인</h4>
+        <h4>
+            지금 결제시 20% 할인 <span>({{ second }}초 후 닫힘)</span>
+        </h4>
     </div>
 </template>
 
 <script>
 export default {
     name: 'Discount-banner',
+    props: {
+        second: Number,
+    },
 };
 </script>
 

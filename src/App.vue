@@ -8,7 +8,7 @@
     <div class="menu">
         <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
-    <Discount />
+    <Discount v-if="showDiscount" :second="second" />
     <button @click="priceSort()">가격순정렬</button>
     <button @click="sortBack()">정렬초기화</button>
     <h1>방찾기</h1>
@@ -57,6 +57,8 @@ export default {
             data: data,
             originData: [...data], // array/object 데이터의 사본을 만들 때 [...array자료]
             clickId: 0,
+            showDiscount: true,
+            second: 20,
             // report: 0,
             // titleStyle: 'color : blue', // HTML 속성도 데이터바인딩 가능
         };
@@ -74,6 +76,18 @@ export default {
         sortBack() {
             this.data = [...this.originData];
         },
+    },
+    created() {
+        if (this.showDiscount) {
+            setInterval(() => {
+                this.second--;
+            }, 1000);
+        }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.showDiscount = false;
+        }, 20000);
     },
     components: { Discount, Modal, Card }, // {Discount: Discount} 이름:컴포넌트 같을때는 축약가능
 };
