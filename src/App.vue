@@ -9,6 +9,8 @@
         <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
     <Discount />
+    <button @click="priceSort()">가격순정렬</button>
+    <button @click="sortBack()">정렬초기화</button>
     <h1>방찾기</h1>
     <div v-for="(a, i) in data" :key="i">
         <Card @openModal="isModal = true" :data="data[i]" />
@@ -53,6 +55,7 @@ export default {
             report: [0, 0, 0],
             isModal: false,
             data: data,
+            originData: [...data], // array/object 데이터의 사본을 만들 때 [...array자료]
             clickId: 0,
             // report: 0,
             // titleStyle: 'color : blue', // HTML 속성도 데이터바인딩 가능
@@ -62,6 +65,14 @@ export default {
         increase() {
             // 버튼 클릭시 신고 수 증가
             this.report++;
+        },
+        priceSort() {
+            this.data.sort(function (a, b) {
+                return a.price - b.price;
+            });
+        },
+        sortBack() {
+            this.data = [...this.originData];
         },
     },
     components: { Discount, Modal, Card }, // {Discount: Discount} 이름:컴포넌트 같을때는 축약가능
