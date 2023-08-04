@@ -1,5 +1,10 @@
 <template>
-    <Modal @closeModal="isModal = false" :data="data" :isModal="isModal" :clickId="clickId" />
+    <!-- <div class="start" :class="{ end: isModal }">
+        <Modal @closeModal="isModal = false" :data="data" :isModal="isModal" :clickId="clickId" />
+    </div> -->
+    <transition name="fade">
+        <Modal @closeModal="isModal = false" :data="data" :isModal="isModal" :clickId="clickId" />
+    </transition>
     <div class="menu">
         <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
@@ -79,5 +84,32 @@ export default {
 .menu a {
     color: white;
     padding: 10px;
+}
+.start {
+    opacity: 0;
+    transition: all 1s;
+}
+.end {
+    opacity: 1;
+}
+
+/* transition fade */
+.fade-enter-from {
+    opacity: 0;
+}
+.fade-enter-active {
+    transition: all 1s;
+}
+.fade-enter-to {
+    opacity: 1;
+}
+.fade-leave-from {
+    opacity: 1;
+}
+.fade-leave-active {
+    transition: all 1s;
+}
+.fade-leave-to {
+    opacity: 0;
 }
 </style>
