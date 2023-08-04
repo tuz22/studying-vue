@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="$emit('openModal')">
         <img :src="data.image" alt="" class="room-img" />
         <h4>{{ data.title }}</h4>
         <p>{{ data.price }}원</p>

@@ -6,6 +6,7 @@
             <p>{{ data[clickId].content }}</p>
             <p>{{ data[clickId].price }}원</p>
             <!-- <button @click="isModal = false">닫기</button> -->
+            <button @click="$emit('closeModal')">닫기</button>
         </div>
     </div>
 </template>

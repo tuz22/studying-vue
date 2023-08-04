@@ -1,12 +1,12 @@
 <template>
-    <Modal :data="data" :isModal="isModal" :clickId="clickId" />
+    <Modal @closeModal="isModal = false" :data="data" :isModal="isModal" :clickId="clickId" />
     <div class="menu">
         <a v-for="(a, i) in menu" :key="i" href="">{{ a }}</a>
     </div>
     <Discount />
     <h1>방찾기</h1>
     <div v-for="(a, i) in data" :key="i">
-        <Card :data="data[i]" />
+        <Card @openModal="isModal = true" :data="data[i]" />
     </div>
     <!-- <div v-for="(a, i) in data" :key="i">
         <태그 v-for="a" in 몇회" :key="a">{{a}}</태그>
