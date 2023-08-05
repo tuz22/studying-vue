@@ -4,6 +4,11 @@
         <h4>{{ data.title }}</h4>
         <p>{{ data.price }}원</p>
     </div>
+    <div>
+        <p @click="$router.push('/detail/' + data.id)">상세페이지 이동</p>
+        <!-- $router.go(1): 앞으로가기 -->
+        <!-- $router.go(-1): 뒤로가기 -->
+    </div>
 </template>
 
 <script>
